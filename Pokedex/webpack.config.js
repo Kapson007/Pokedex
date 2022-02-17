@@ -28,7 +28,17 @@ module.exports = {
             }
         ]
     },
+    devServer: {
+        port: 8080,
+        contentBase: path.resolve(__dirname, "dist"),
+        allowedHosts: 'all',
+        bonjour: {
+            type: 'https',
+            protocol: 'tcp',
+          },
+    },
     resolve: {
         extensions: [".ts"]
     }
+    
 }

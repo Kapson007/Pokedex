@@ -3,11 +3,12 @@
   "scripts": {
     "dev": "webpack --config webpack.config.js",
     "watch": "webpack --watch --mode development",
-    "prod": "webpack --config webpack.config.js --mode production"
+    "prod": "webpack --config webpack.config.js --mode production",
+    "serve": "webpack serve"
   },
   "devDependencies": {
     "css-loader": "^6.6.0",
-    "sass": "^1.49.7",
+    "node-sass": "^7.0.1",
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.2.6",
