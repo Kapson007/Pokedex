@@ -3,6 +3,7 @@ const path = require("path");
 module.exports = {
     context: __dirname,
     mode: "development",
+    
     entry:{
         main: "./src/main.ts",
     },
@@ -10,6 +11,20 @@ module.exports = {
         filename: "js/app.js",
         path: path.resolve(__dirname, "dist"),
         publicPath: "/dist/"
+    },
+    devServer: {
+        static : {
+            directory : path.join(__dirname, "/dist/")
+          },
+          port: 3000,
+          // publicPath
+          devMiddleware:{
+             publicPath: "https://localhost:3000/dist/",
+          },
+        bonjour: {
+            type: 'https',
+            protocol: 'tcp',
+          },
     },
     module: {
         rules:[
@@ -28,15 +43,7 @@ module.exports = {
             }
         ]
     },
-    devServer: {
-        port: 8080,
-        contentBase: path.resolve(__dirname, "dist"),
-        allowedHosts: 'all',
-        bonjour: {
-            type: 'https',
-            protocol: 'tcp',
-          },
-    },
+    
     resolve: {
         extensions: [".ts"]
     }
