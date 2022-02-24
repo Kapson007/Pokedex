@@ -126,7 +126,27 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mai
   \***************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getData\": () => (/* binding */ getData)\n/* harmony export */ });\nvar getData = function () {\n    // console.log(\"Hello wordl!\");\n    var promises = [];\n    var pokedex = [];\n    for (var i = 1; i <= 150; i++) {\n        var urlAddress = \"https://pokeapi.co/api/v2/pokemon/\".concat(i);\n        promises.push(fetch(urlAddress).then(function (res) { return res.json(); }));\n    }\n    Promise.all(promises).then(function (results) {\n        pokedex = results.map(function (data) { return ({\n            id: data.id,\n            name: data.name,\n            image: data.sprites.front_default,\n            type: data.types.map(function (type) { return type.type.name; }).join(', ')\n        }); });\n    });\n    return pokedex;\n};\n\n\n//# sourceURL=webpack:///./src/ts/getData.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getData\": () => (/* binding */ getData)\n/* harmony export */ });\n/* harmony import */ var _isPokemon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isPokemon */ \"./src/ts/isPokemon.ts\");\n/* harmony import */ var _isType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./isType */ \"./src/ts/isType.ts\");\n\n\nvar getData = function () {\n    // console.log(\"Hello wordl!\");\n    var promises = [];\n    var pokedex = [];\n    for (var i = 1; i <= 150; i++) {\n        var urlAddress = \"https://pokeapi.co/api/v2/pokemon/\".concat(i);\n        promises.push(fetch(urlAddress).then(function (res) { return res.json(); }));\n    }\n    try {\n        Promise.all(promises).then(function (results) {\n            console.log(results);\n            pokedex = results.map(function (data) {\n                if (data && (0,_isPokemon__WEBPACK_IMPORTED_MODULE_0__.isPokemon)(data)) {\n                    return ({\n                        id: data.id,\n                        name: data.name,\n                        image: data.sprites.front_default,\n                        type: data.types.map(function (type) {\n                            if (type && (0,_isType__WEBPACK_IMPORTED_MODULE_1__.isType)(type)) {\n                                return type.type.name;\n                            }\n                            else {\n                                throw new Error(\"Cannot read property from API\");\n                            }\n                        }).join(', ')\n                    });\n                }\n                else {\n                    throw new Error(\"Cannot read property from API\");\n                }\n            });\n        });\n    }\n    catch (err) {\n        console.error(err);\n    }\n    return pokedex;\n};\n\n\n//# sourceURL=webpack:///./src/ts/getData.ts?");
+
+/***/ }),
+
+/***/ "./src/ts/isPokemon.ts":
+/*!*****************************!*\
+  !*** ./src/ts/isPokemon.ts ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"isPokemon\": () => (/* binding */ isPokemon)\n/* harmony export */ });\nfunction isPokemon(pokemon) {\n    return \"id\" in pokemon;\n}\n\n\n//# sourceURL=webpack:///./src/ts/isPokemon.ts?");
+
+/***/ }),
+
+/***/ "./src/ts/isType.ts":
+/*!**************************!*\
+  !*** ./src/ts/isType.ts ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"isType\": () => (/* binding */ isType)\n/* harmony export */ });\nfunction isType(typePokemon) {\n    return \"slot\" in typePokemon && \"type\" in typePokemon;\n}\n\n\n//# sourceURL=webpack:///./src/ts/isType.ts?");
 
 /***/ })
 
