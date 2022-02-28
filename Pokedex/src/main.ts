@@ -8,8 +8,7 @@ import { Pokemon } from "./ts/interface/pokemon";
     async () => {
         const pokedex = await getData();
         const pokemons: Array<Pokemon> = await pokedex();
-        // console.log(pokemons);
-        pokemons.forEach((pokemon)=>
-        displayPokemon(pokemon));
+        console.log(pokemons);
+        displayPokemon(pokemons);
     }
 )();
