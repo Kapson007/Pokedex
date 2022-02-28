@@ -1,4 +1,4 @@
-import "./main.scss";
+import "./scss/main.scss";
 import getData  from "./ts/getData";
 import { displayPokemon } from "./ts/insertPokemon";
 import { Pokemon } from "./ts/interface/pokemon";

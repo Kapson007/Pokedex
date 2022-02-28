@@ -1,0 +1,35 @@
+@import "reset.scss";
+@import "./variables.scss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,600;0,800;0,900;1,200&display=swap');
+@import "./components/card.scss";
+body {
+    background-color: $bgPokemon;
+    font-family: 'Poppins';
+    box-sizing: border-box;
+}
+
+
+.pokedex{
+    padding-inline-start: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 40px;
+    
+}
+
+.app{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    margin: 0 auto;
+
+    &__title{
+        padding: 20px 0;
+        font-size: $title-large;
+        font-weight: 600;
+        text-align: center;
+        color: $fontPokemon;
+    }
+}
