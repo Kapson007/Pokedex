@@ -1,4 +1,15 @@
 import "./main.scss";
-import { getData } from "./ts/getData";
+import getData  from "./ts/getData";
+import { displayPokemon } from "./ts/insertPokemon";
+import { Pokemon } from "./ts/interface/pokemon";
 
-console.log(getData());
+
+(
+    async () => {
+        const pokedex = await getData();
+        const pokemons: Array<Pokemon> = await pokedex();
+        // console.log(pokemons);
+        pokemons.forEach((pokemon)=>
+        displayPokemon(pokemon));
+    }
+)();

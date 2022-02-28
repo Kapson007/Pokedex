@@ -1,21 +1,20 @@
+import { displayPokemon } from "./insertPokemon";
 import { Pokemon } from "./interface/pokemon";
 import { isPokemon } from "./isPokemon";
 import { isType } from "./isType";
-export const getData = (): Array< Pokemon | undefined> =>{
-    // console.log("Hello wordl!");
 
+const getData = (): any =>{
     const promises: Array<Promise<unknown>> = [];
-    let pokedex: Array<Pokemon | undefined > = [];
-    for( let i = 1; i <= 150; i++){
-        const urlAddress = `https://pokeapi.co/api/v2/pokemon/${i}`;
-        
-        promises.push(fetch(urlAddress).then(res => res.json()));
-    }
-
-    try{
-        Promise.all(promises).then(results => {
-            console.log(results);
-            pokedex = results.map((data?: unknown) =>{
+    let pokemons: Array<Pokemon | undefined> = [];
+    const pokedex = async (): Promise<Array<Pokemon | undefined>> =>{
+        try{
+            for( let i = 1; i <= 150; i++){
+                const urlAddress = `https://pokeapi.co/api/v2/pokemon/${i}`;
+                
+                promises.push(fetch(urlAddress).then(res => res.json()));
+            }
+            const dataAPI = await Promise.all(promises);
+            pokemons = await dataAPI.map((data?:unknown) =>{
                 if( data && isPokemon(data)){
                     return ({
                         id: data.id,
@@ -25,22 +24,24 @@ export const getData = (): Array< Pokemon | undefined> =>{
                              if(type && isType(type)){
                                 return type.type.name;
                             }else{
-                                throw new Error("Cannot read property from API");
+                                throw new Error("Cannot get access to data from API");
                             }
                         }).join(', ')
-                    });
+                    }
+                );
                 }else{
-                    throw new Error("Cannot read property from API")
+                    throw new Error("Cannot get access to data from API");
                 }
-            });
-        });
 
-    }catch(err:unknown){
-        console.error(err);
-        
-    }
-    
-    
+            });
+
+        }catch(err: unknown){
+            console.log(err);
+        }
+        return pokemons
+    };
+
     return pokedex;
-    
-};
+}
+
+export default getData;
