@@ -14,7 +14,9 @@ This apps is a symulation of Pokedex which allows you search your favourite Poke
 
 #### Setup:
 To run this project, install it locally using npm:
+```
 $ cd ../lorem
 $ npm install
 $ npm run watch
 $ npm run serve
+```
