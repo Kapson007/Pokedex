@@ -1,4 +1,3 @@
-import { displayPokemon } from "./insertPokemon";
 import { Pokemon } from "./interface/pokemon";
 import { isPokemon } from "./isPokemon";
 import { isType } from "./isType";
