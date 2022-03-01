@@ -12,3 +12,42 @@
         transform: translateY(0px);
     }
 }
+
+@keyframes spinFirst{
+    0%{
+        transform: rotate(0deg);
+        border-width: 10px;
+    }
+    50%{
+        transform: rotate(180deg);
+        border-width: 1px;
+        border-top-color: $pokeBall;
+    }
+    70%{
+        border-top-color: $pokeBall;
+    }
+    100%{
+        transform: rotate(360deg);
+        border-width: 10px;
+    }
+}
+
+@keyframes spinSecond{
+    0%{
+        transform: rotate(0deg);
+        border-width: 1px;
+        border-bottom-color: $pokeBall;
+    }
+    50%{
+        transform: rotate(180deg);
+        border-width: 10px;
+        
+    }
+    70%{
+        border-bottom-color: $pokeBall;
+    }
+    100%{
+        transform: rotate(360deg);
+        border-width: 1px;
+    }
+}

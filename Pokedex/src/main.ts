@@ -10,5 +10,6 @@ import { Pokemon } from "./ts/interface/pokemon";
         const pokemons: Array<Pokemon> = await pokedex();
         console.log(pokemons);
         displayPokemon(pokemons);
+        
     }
 )();

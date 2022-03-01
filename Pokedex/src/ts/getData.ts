@@ -26,7 +26,9 @@ const getData = (): any =>{
                             }else{
                                 throw new Error("Cannot get access to data from API");
                             }
-                        }).join(', ')
+                        }).join(', '),
+                        height: data.height,
+                        weight: data.weight
                     }
                 );
                 }else{

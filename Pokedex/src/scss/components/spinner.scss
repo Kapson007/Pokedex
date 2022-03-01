@@ -1,0 +1,30 @@
+@import "../variables.scss";
+@import "../animations.scss";
+
+@mixin spinShape{
+    border: 8px solid transparent;
+    border-radius: 50%;
+}
+
+.loader{
+    position: relative;
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    &__spin{
+        box-sizing: border-box;
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        @include spinShape;
+        border-top-color: $fontPokemon;
+    }
+    &__spin:nth-child(1){
+        animation: spinFirst 1.2s linear infinite;
+    }
+    &__spin:nth-child(2){
+        @include spinShape;
+        border-bottom-color: $fontPokemon;
+        animation: spinSecond 1.2s linear infinite;
+    }
+}
